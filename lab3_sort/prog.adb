@@ -10,6 +10,28 @@ procedure prog is
   R  : constant Integer := 20;
   W1 : Wektor (1..R);
 
+task type TSor is
+  entry Start(W: Wektor);
+  entry Koniec(W: out Wektor);
+end TSor;
+
+task body Tsor is
+  WL: Wektor(1..Rozmiar);
+begin
+  accept Start(W: Wektor) do
+  WL := W;
+  end Start;
+
+  Sortuj_BB(WL);
+
+  accept Koniec(W: out Wektor) do
+  W : WL;
+  end Koniec;
+end TSor;
+
+type WTSor is access TSor;
+WS1, WS2, WTSor;
+
   procedure losuj_wektor (W : in out Wektor) is
   Gen : Generator;
   begin
