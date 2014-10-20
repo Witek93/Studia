@@ -1,0 +1,86 @@
+V "GNAT Lib v2013"
+M P W=b
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_DEFAULT_INITIALIZATION
+RV SPARK
+
+U prog%b		prog.adb		68867215 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+D ada.ads		20130417131023 3ffc8e18
+D a-except.ads		20130417131019 10fcae55
+D a-finali.ads		20130417131020 52ecdc1b
+D a-flteio.ads		20130417131020 e18a47a0
+D a-ioexce.ads		20130417131020 8b9de6cd
+D a-numeri.ads		20130417131020 bb51c45a
+D a-nuflra.ads		20130417131020 49c50e0b
+D a-stream.ads		20130417131021 2ca4ee37
+D a-tags.ads		20130417131022 6c0509d0
+D a-textio.ads		20130417131022 386df5d4
+D a-tiflio.ads		20130417131022 56fbda09
+D a-unccon.ads		20130417131022 f9eb8f06
+D interfac.ads		20130417131027 cb4a8015
+D i-cstrea.ads		20130417131026 8128536b
+D prog.adb		20141020083425 f8a4ce6a
+D system.ads		20130417131036 f2f2d889
+D s-crtl.ads		20130417131029 dfcfca61
+D s-exctab.ads		20130417131029 66e51330
+D s-ficobl.ads		20130417131029 55a71d43
+D s-finmas.ads		20130417131029 b95bb341
+D s-finroo.ads		20130417131029 4ff27390
+D s-parame.ads		20130417131032 b6e20cc0
+D s-pooglo.ads		20130417131032 542f33d0
+D s-rannum.ads		20130417131032 5eb33f0a
+D s-soflin.ads		20130417131032 24c8153c
+D s-stache.ads		20130417131032 596fc1b4
+D s-stalib.ads		20130417131032 f78bcf95
+D s-stoele.ads		20130417131032 facd7d98
+D s-stoele.adb		20130417131032 afc5dc80
+D s-stopoo.ads		20130417131032 7b8fbeee
+D s-traent.ads		20130417131033 5221ee41
+D s-unstyp.ads		20130417131034 6ae15c76
+D s-wchcon.ads		20130417131034 bfeb2e3d
+X 1 ada.ads
+16K9*Ada 19e8 15|1r6 1r19 1r38 2r6 2r19 2r38
+X 4 a-flteio.ads
+20K13*Float_Text_IO[11|45] 15|1w23 2r23
+X 6 a-numeri.ads
+16K13*Numerics 32e17 15|1r42 2r42
+X 7 a-nuflra.ads
+41K22*Float_Random 72e30 15|1w51 2r51
+45R9*Generator 15|14r9
+47F12*Uniformly_Distributed{float}
+49V13*Random{47F12}<24|62p13> 15|18s12
+51U14*Reset<24|91p14> 15|16s5
+X 10 a-textio.ads
+49K13*Text_IO 471e16 15|1w10 2r10
+263U14*Put_Line 15|24s5 28s5
+X 11 a-tiflio.ads
+67U14*Put 15|26s7[4|20]
+X 15 prog.adb
+4U11*prog 4b11 50l5 50t9
+8A8 Wektor(float)<integer> 11r8 13r38 22r31 31r38
+10i3 R{integer} 11r19
+11a3 W1{8A8} 46m16 46r16 47r14 48m17 48r17 49r14
+13U13 losuj_wektor 13b13 13=27 20l7 20t19 46s3
+13a27 W{8A8} 17m14 17r14
+14r3 Gen{7|45R9} 16r11 18r19
+17f9 E=17:14{float} 18r7
+22U13 put_wektor 22b13 22>25 22>39 29l7 29t17 47s3 49s3
+22a25 W{8A8} 25r14
+22s39 Comment{string} 24r14
+25f9 E=25:14{float} 26r11
+31U13 sortuj_wektor 31b13 31=28 43l7 43t20 48s3
+31a28 W{8A8} 34r14 35r16 35r26 36r12 36r19 37r21 38m11 38r21 39m11
+32f5 tmp{float} 37m11 39r21
+34i9 I{integer}
+35i11 J{integer} 36r14 36r21 37r23 38r13 38r23 39r13
+
