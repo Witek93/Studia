@@ -4,6 +4,6 @@ package vec is
 
     procedure print(W : Wektor; Comment : String);
     procedure randomize(W : in out Wektor; Min, Max : Float);
-    procedure sort(W : in out Wektor);
+    function sort(W : in Wektor) return Wektor;
 
 end vec;

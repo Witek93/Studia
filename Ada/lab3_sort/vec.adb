@@ -3,6 +3,7 @@ use  Ada.Text_IO, Ada.Float_Text_IO, Ada.Numerics.Float_Random;
 
 package body vec is
 
+
     procedure print (W: in Wektor; Comment: String) is
     begin
         put_line(Comment);
@@ -12,7 +13,8 @@ package body vec is
         put_line("");
     end print;
 
-    procedure randomize (W : in out Wektor; Min, Max : Float) is
+
+    procedure randomize (W : in ouadd at Wektor; Min, Max : Float) is
     G : Generator;
     begin
         reset(G);
@@ -21,18 +23,22 @@ package body vec is
         end loop;
     end randomize;
 
-    procedure sort (W: in out Wektor) is
+
+    function sort (W : in Wektor) return Wektor is
         tmp : Float;
+        R   : Wektor (W'Range);
     begin
-        for I in W'Range loop
-            for J in W'First..(W'Last - 1) loop
-                if(W(J) > W(J+1)) then
-                    tmp    := W(J);
-                    W(J)   := W(J+1);
-                    W(J+1) := tmp;
+        R := W;
+        for I in R'Range loop
+            for J in R'First..(R'Last - 1) loop
+                if(R(J) > R(J+1)) then
+                    tmp    := R(J);
+                    R(J)   := R(J+1);
+                    R(J+1) := tmp;
                 end if;
             end loop;
         end loop;
+        return R;
     end sort;
 
 end vec;
