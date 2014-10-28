@@ -10,11 +10,6 @@ procedure prog is
   R  : constant Integer := 20;
   W1 : Wektor (1..R);
 
-task type TSor is
-  entry Start(W: Wektor);
-  entry Koniec(W: out Wektor);
-end TSor;
-
 task body Tsor is
   WL: Wektor(1..Rozmiar);
 begin
