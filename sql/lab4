@@ -1,0 +1,19 @@
+% 4.2.1
+SELECT dataRealizacji, idZamowienia
+FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+WHERE k.nazwa LIKE '%Antoni%';
+
+% 4.2.2
+SELECT dataRealizacji, idZamowienia
+FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+WHERE k.ulica LIKE '%/%';
+
+% 4.2.3
+SELECT dataRealizacji, idZamowienia
+FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+WHERE k.miejscowosc = 'Kraków'
+  AND EXTRACT(year  FROM z.dataRealizacji) = 2013
+  AND EXTRACT(month FROM z.dataRealizacji) = 11;
+
+
+% 4.3.1
