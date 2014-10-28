@@ -17,3 +17,44 @@ WHERE k.miejscowosc = 'Kraków'
 
 
 % 4.3.1
+SELECT k.nazwa, k.ulica, k.miejscowosc, z.dataRealizacji
+FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+WHERE NOW() - INTERVAL '5 years' > z.dataRealizacji;
+
+% 4.3.2
+SELECT k.nazwa, k.ulica, k.miejscowosc, p.nazwa FROM klienci k
+JOIN zamowienia z ON k.idKlienta = z.idKlienta
+JOIN artykuly   a ON a.idZamowienia = z.idZamowienia
+JOIN pudelka    p ON p.idPudelka = a.idPudelka
+WHERE p.nazwa IN ('Kremowa fantazja', 'Kolekcja jesienna');
+
+% 4.3.3
+SELECT k.nazwa, k.ulica, k.miejscowosc FROM klienci k
+INNER JOIN zamowienia z ON k.idKlienta = z.idKlienta;
+
+% 4.3.4
+SELECT nazwa, ulica, miejscowosc FROM klienci
+EXCEPT
+SELECT k.nazwa, k.ulica, k.miejscowosc FROM klienci k
+INNER JOIN zamowienia z ON k.idKlienta = z.idKlienta;
+
+% 4.3.5
+SELECT k.nazwa, k.ulica, k.miejscowosc, z.dataRealizacji FROM klienci k
+JOIN zamowienia z ON k.idKlienta = z.idKlienta
+WHERE EXTRACT(year  FROM z.dataRealizacji) = 2013
+  AND EXTRACT(month FROM z.dataRealizacji) = 11;
+
+% 4.3.6
+SELECT k.nazwa, k.ulica, k.miejscowosc, p.nazwa, a.sztuk FROM klienci k
+JOIN zamowienia z ON k.idKlienta = z.idKlienta
+JOIN artykuly   a ON a.idZamowienia = z.idZamowienia
+JOIN pudelka    p ON p.idPudelka = a.idPudelka
+WHERE p.nazwa IN ('Kremowa fantazja', 'Kolekcja jesienna')
+  AND a.sztuk >= 2;
+
+% 4.3.7
+SELECT k.nazwa, k.ulica, k.miejscowosc, p.opis FROM klienci k
+JOIN zamowienia z ON k.idKlienta = z.idKlienta
+JOIN artykuly   a ON a.idZamowienia = z.idZamowienia
+JOIN pudelka    p ON p.idPudelka = a.idPudelka
+WHERE p.opis SIMILAR TO '.%[m|M]igdał%';
