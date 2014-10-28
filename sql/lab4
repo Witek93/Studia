@@ -58,3 +58,22 @@ JOIN zamowienia z ON k.idKlienta = z.idKlienta
 JOIN artykuly   a ON a.idZamowienia = z.idZamowienia
 JOIN pudelka    p ON p.idPudelka = a.idPudelka
 WHERE p.opis SIMILAR TO '.%[m|M]igdał%';
+
+
+
+% 4.4.1
+SELECT p.nazwa, p.opis, cz.nazwa, cz.opis FROM pudelka p
+JOIN zawartosc  z  ON z.idPudelka = p.idPudelka
+JOIN czekoladki cz ON cz.idCzekoladki = z.idCzekoladki;
+
+% 4.4.2
+SELECT p.nazwa, p.opis, cz.nazwa, cz.opis FROM pudelka p
+JOIN zawartosc  z  ON z.idPudelka = p.idPudelka
+JOIN czekoladki cz ON cz.idCzekoladki = z.idCzekoladki
+WHERE p.idPudelka = 'heav';
+
+% 4.4.3
+SELECT p.nazwa, p.opis, cz.nazwa, cz.opis FROM pudelka p
+JOIN zawartosc  z  ON z.idPudelka = p.idPudelka
+JOIN czekoladki cz ON cz.idCzekoladki = z.idCzekoladki
+WHERE p.nazwa SIMILAR TO '%Kolekcja%';
