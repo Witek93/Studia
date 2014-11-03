@@ -17,12 +17,13 @@ dzielna([H|T], L1, L2, false) -> dzielna(...);
 
 psort() ->
 receive
-{Od, L} -> LL = sortbb(L),
-  Od ! {w, LL}
-  after 1000 -> timeout_ps
+  {Od, L} ->
+    Od ! {w, sortbb(L)},
+    after 1000 -> timeout_ps
 end.
 
 sortw(L) ->
+% spawn(NAZWA_PLIKU, nazwa_funkcji, poczatkowa_wartosc_L1lubL2) %
 P1 = spawn(msort, psort, []),
 P2 = spawn(msort, psort, []),
 [L1, L2] = dzielna(L),

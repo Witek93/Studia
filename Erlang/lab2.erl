@@ -21,9 +21,9 @@ randIntList({Min, Max}, Count) ->
 randIntList@({Min, Max}, Count) -> [random:uniform(Max-Min) + Min || _ <- lists:seq(1,Count)].
 
 qsort([]) -> [];
-qsort([H|T]) ->
-  {Smaller, Larger} = partition(H, T, [], []),
-  qsort(Smaller) ++ [H] ++ qsort(Larger).
+qsort([Pivot|T]) ->
+  {Smaller, Larger} = partition(Pivot, T, [], []),
+  qsort(Smaller) ++ [Pivot] ++ qsort(Larger).
 
 
 partition(_, [], Smaller, Larger) -> {Smaller, Larger};
