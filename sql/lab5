@@ -1,0 +1,22 @@
+% 5.1.1
+SELECT COUNT(*) FROM czekoladki;
+
+% 5.1.2
+SELECT COUNT(*) FROM czekoladki
+WHERE nadzienie IS NOT NULL;
+
+SELECT COUNT(nadzienie) FROM czekoladki
+WHERE nadzienie IS NOT NULL;
+
+% 5.1.3
+SELECT p.* FROM zawartosc z
+JOIN pudelka p ON z.idpudelka = p.idpudelka
+WHERE z.sztuk = (SELECT MAX(sztuk) FROM zawartosc);
+
+
+
+% 5.2.1
+SELECT p.nazwa, z.sztuk, cz.masa, (z.sztuk * cz.masa) AS "Masa pudelka" 
+FROM zawartosc z
+JOIN pudelka    p  ON z.idpudelka     = p.idpudelka
+JOIN czekoladki cz ON cz.idczekoladki = z.idczekoladki;
