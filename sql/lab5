@@ -16,7 +16,15 @@ WHERE z.sztuk = (SELECT MAX(sztuk) FROM zawartosc);
 
 
 % 5.2.1
-SELECT p.nazwa, z.sztuk, cz.masa, (z.sztuk * cz.masa) AS "Masa pudelka" 
+SELECT p.nazwa, z.sztuk, cz.masa, (z.sztuk * cz.masa) AS "Masa pudelka"
 FROM zawartosc z
 JOIN pudelka    p  ON z.idpudelka     = p.idpudelka
 JOIN czekoladki cz ON cz.idczekoladki = z.idczekoladki;
+
+-- % 5.2.2
+-- SELECT p.nazwa, z.sztuk, cz.masa, (z.sztuk * cz.masa) AS "Masa pudelka"
+-- FROM zawartosc z
+-- JOIN pudelka    p  ON z.idpudelka     = p.idpudelka
+-- JOIN czekoladki cz ON cz.idczekoladki = z.idczekoladki
+-- WHERE (z.sztuk * cz.masa) =
+--   (SELECT MAX(z.sztuk * cz.masa) FROM zawartosc, czekoladki);
