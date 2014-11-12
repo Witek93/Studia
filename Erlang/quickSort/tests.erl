@@ -4,7 +4,7 @@
 
 test(N) -> test(N, 500000).
 test(N, _) when N < 0 -> {error, "Liczba testow nie moze byc ujemna!"};
-test(N, VectorLength)            -> test(N, VectorLength, 0, 0).
+test(N, VectorLength) -> test(N, VectorLength, 0, 0).
 test(0, _, Trues, Falses) ->
     io:format("W ~p podejsciach sortowanie wspolbiezne bylo szybsze ~p razy.~n", [(Trues+Falses), Trues]),
     io:format("z kolei sortowanie na jednym procesie bylo szybsze   ~p razy.~n", [Falses]);
