@@ -35,9 +35,9 @@ sort([Pivot|Rest]) ->
 
 
 spawnTwoProcesses(Vec) ->
-    {Smaller, Larger} = qsort:divide(Vec),
-    Process1 = spawn(spawner, sortingProcess, []),
-    Process2 = spawn(spawner, sortingProcess, []),
+    {Smaller, Larger} = divide(Vec),
+    Process1 = spawn(allInOne, sortingProcess, []),
+    Process2 = spawn(allInOne, sortingProcess, []),
     Process1 ! {self(), Smaller},
     Process2 ! {self(), Larger},
     psw(),
@@ -47,7 +47,7 @@ spawnTwoProcesses(Vec) ->
 sortingProcess() ->
     receive
         {From, L} ->
-            From ! {sorted_properly, qsort:sort(L)}
+            From ! {sorted_properly, sort(L)}
     end.
 
 
@@ -74,15 +74,15 @@ test(N, VectorLength, Trues, Falses) ->
 
 
 compare(VectorLength) ->
-    Vec = vec:rand(VectorLength),
-    {Micros, _} = timer:tc(fun qsort:sort/1, [Vec]),
-    {Micros2, _} = timer:tc(fun spawner:spawnTwoProcesses/1, [Vec]),
+    Vec = rand(VectorLength),
+    {Micros, _} = timer:tc(fun sort/1, [Vec]),
+    {Micros2, _} = timer:tc(fun spawnTwoProcesses/1, [Vec]),
     Micros > Micros2.
 
 
 printComparison(VectorLength) ->
-    Vec = vec:rand(VectorLength),
-    {Micros, _} = timer:tc(fun qsort:sort/1, [Vec]),
+    Vec = rand(VectorLength),
+    {Micros, _} = timer:tc(fun sort/1, [Vec]),
     io:format("Czas sortowania na jednym procesie: ~p[ms]~n", [Micros/1000]),
-    {Micros2, _} = timer:tc(fun spawner:spawnTwoProcesses/1, [Vec]),
+    {Micros2, _} = timer:tc(fun spawnTwoProcesses/1, [Vec]),
     io:format("Czas sortowania wspolbieznego:      ~p[ms]~n", [Micros2/1000]).
