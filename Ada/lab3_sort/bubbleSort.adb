@@ -1,6 +1,7 @@
 with Ada.Float_Text_IO, Ada.Text_IO, Ada.Numerics.Float_Random;
 use  Ada.Float_Text_IO, Ada.Text_IO, Ada.Numerics.Float_Random;
 
+
 procedure bubbleSort is
 	R: constant Integer := 40;
 	type Wektor is array(integer range <>) of Float;
