@@ -1,0 +1,40 @@
+% ZAD 6.1
+INSERT INTO czekoladki
+VALUES ('W98', 'Biały kieł', 'biała', 'laskowe', 'marcepan', 'Rozpływające się w rękach i kieszeniach', 0.45, 20);
+
+INSERT INTO klienci
+VALUES (90, 'Matusiak Edward', 'Kropiwnickiego 6/3', 'Leningrad', '31-471', '031 423 45 38');
+INSERT INTO klienci
+VALUES (91, 'Matusiak Alina',  'Kropiwnickiego 6/3', 'Leningrad', '31-471', '031 423 45 38');
+INSERT INTO klienci
+VALUES (92, 'Kimono Franek',   'Karateków 8',        'Mistrz',    '30-029', '501 498 324');
+
+
+% Dodaj dane Izy Matusiak (idklienta 93).
+% Pozostałe dane osobowe Izy Matusiak muszą być takie same jak dla Pana Edwarda Matusiaka. Użyj podzapytań
+
+INSERT INTO klienci (idklienta, nazwa, ulica, miejscowosc, kod, telefon)
+SELECT 93, 'Matusiak Iza', ulica, miejscowosc, kod, telefon FROM klienci WHERE idklienta = 90;
+
+
+% 6.2
+INSERT INTO czekoladki
+VALUES ('X91', 'Nieznana Nieznajoma', NULL, NULL, NULL, 'Niewidzialna czekoladka wspomagajaca odchudzanie.', 0.26, 0);
+INSERT INTO czekoladki
+VALUES ('M98', 'Mleczny Raj', 'Mleczna', NULL, NULL, 'Aksamitna mleczna czekolada w ksztalcie butelki z mlekiem.', 0.26,36);
+
+% 6.3.1
+DELETE FROM czekoladki WHERE idczekoladki = 'X91';
+DELETE FROM czekoladki WHERE idczekoladki = 'M98';
+
+% 6.3.3
+INSERT INTO czekoladki (idczekoladki, nazwa, opis, koszt, masa)
+VALUES ('X91', 'Nieznana Nieznajoma', 'Niewidzialna czekoladka wspomagajaca odchudzanie.', 0.26, 0);
+INSERT INTO czekoladki (idczekoladki, nazwa, czekolada, opis, koszt, masa)
+VALUES ('M98', 'Mleczny Raj', 'Mleczna', 'Aksamitna mleczna czekolada w ksztalcie butelki z mlekiem.', 0.26, 36);
+
+% 6.4
+UPDATE klienci SET nazwa = 'Nowak Iza' WHERE nazwa = 'Matusiak Iza';
+UPDATE czekoladki SET koszt = koszt * 9 / 10 WHERE idczekoladki IN ('M98', 'X91', 'W98');
+
+UPDATE klienci SET miejscowosc = 'Piotrograd' WHERE miejscowosc = 'Leningrad';
