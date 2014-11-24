@@ -12,19 +12,17 @@ procedure Ada_log is
   Dlugosc_Pliku : Integer := 0;
 
   procedure Log (Msg : String) is
-    T       : Time := Clock;
-    DateStr : Unbounded_String;
-    Plik    : File_Type;
-    Nazwa_Log : String := "LOG.txt";
+    Plik      : File_Type;
+    Nazwa_Log : String           := "LOG.txt";
+    DateStr   : Unbounded_String := To_Unbounded_String(Image(Clock, True));
   begin
     begin
       Open (Plik, Mode => Append_File, Name => Nazwa_Log);
       exception
-         when Name_Error =>
-            Create (Plik, Mode => Out_File, Name => Nazwa_Log);
-    end;
-    DateStr := To_Unbounded_String(Image(T, True));
-    Put_Line(DateStr);
+        when Name_Error => Create (Plik, Mode => Out_File, Name => Nazwa_Log);
+      end;
+    Put_Line(Plik, (DateStr & " -> " & Msg));
+    Close(Plik);
   end;
 
 
@@ -37,7 +35,8 @@ Wczytaj_loop:
         exit Wczytaj_loop when Nazwa_Pliku = "";
         Open(Plik, In_File,Nazwa_Pliku(1..Dlugosc_Pliku));
       exception
-        when Name_Error => Put_Line("Bledna nazwa pliku <" & Nazwa_Pliku(1..Dlugosc_Pliku) & "> !");
+        when Name_Error =>
+          Log("Bledna nazwa pliku <" & Nazwa_Pliku(1..Dlugosc_Pliku) & "> !");
       end;
     end loop Wczytaj_loop;
 
