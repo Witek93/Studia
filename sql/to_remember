@@ -11,6 +11,7 @@ SELECT * FROM zamowienia WHERE EXTRACT(month FROM data) IN (1,2);
 
 -- LIKE
 -- 's%s' (zaczyna i kończy s)
+-- '%s%' (zawiera s)
 
 -- [NOT] SIMILAR TO
 -- '[a-c]%' (zaczyna na a, b lub c)
@@ -21,6 +22,7 @@ SELECT * FROM zamowienia WHERE EXTRACT(month FROM data) IN (1,2);
 -- INTERSECT,UNION,EXCEPT
 
 -- array_length(tab, 1) = 5
+-- NOW() - INTERVAL '5 years' > data;
 
 COPY (SELECT * FROM czekoladki WHERE masa=25) TO '/path' WITH DELIMITER ';' CSV HEADER;
 COPY zip_codes FROM '/path' DELIMITER ',' CSV;
