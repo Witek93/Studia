@@ -17,16 +17,13 @@ WHERE miejscowosc = 'Kraków'
 ORDER BY nazwa ASC;
 
 
--- ended here
-
-% 2.2
-SELECT nazwa, masa FROM czekoladki
-WHERE masa > 20;
+-- zadanie 2.2
+SELECT nazwa, masa FROM czekoladki WHERE masa > 20;
 
 SELECT nazwa, masa, koszt FROM czekoladki
 WHERE masa > 20 AND koszt < 0.25;
 
-SELECT nazwa, masa, CAST(koszt*100 AS INTEGER) FROM czekoladki
+SELECT nazwa, masa, CAST(koszt*100 AS INTEGER) AS "koszt(gr)" FROM czekoladki
 WHERE masa > 20 AND koszt < 0.25;
 
 SELECT nazwa, czekolada, nadzienie, orzechy FROM czekoladki
@@ -43,65 +40,63 @@ WHERE czekolada = 'biała'
   OR  czekolada = 'mleczna';
 
 
-% 2.3
+-- zadanie 2.3
 SELECT 124 * 7 + 45;
 SELECT 2 ^ 20;
 SELECT sqrt(3);
 SELECT pi();
 
 
-% 2.4.1
+-- zadanie 2.4
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE masa BETWEEN 15 AND 24;
 
-% 2.4.2
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE koszt BETWEEN 0.25 AND 0.35;
 
-% 2.4.3
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE koszt BETWEEN 0.25 AND 0.35
   OR  masa  BETWEEN 15   AND 24;
 
 
-% 2.5.1
+-- zadanie 2.5
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE orzechy LIKE '%orzechy%';
+WHERE orzechy IS NOT NULL;
 
-% 2.5.2
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE orzechy NOT LIKE '%orzechy%';
+WHERE orzechy IS NULL;
 
-% 2.5.3
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE orzechy   LIKE '%orzechy%'
-  AND nadzienie LIKE '%';
+WHERE orzechy   IS NOT NULL
+   OR nadzienie IS NOT NULL;
 
-% 2.5.4
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE czekolada IN ('biala', 'mleczna')
-  AND orzechy NOT LIKE '%orzechy%';
+  AND orzechy IS NOT NULL;
 
-% 2.5.5
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE NOT czekolada IN ('biala', 'mleczna')
-  AND orzechy LIKE '%orzechy%'
-  OR  nadzienie IS NOT NULL;
+  AND orzechy IS NOT NULL
+   OR nadzienie IS NOT NULL;
 
-% 2.5.6
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE nadzienie IS NOT NULL;
 
-%2.5.7
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE nadzienie IS NULL;
 
-% 2.5.8
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE orzechy IS NULL
   AND nadzienie IS NULL;
 
-% 2.5.9
 SELECT idczekoladki, nazwa, masa, koszt FROM czekoladki
 WHERE czekolada IN ('mleczna', 'biała')
   AND nadzienie IS NULL;
+
+
+-- zadanie 2.6
+SELECT * FROM czekoladki
+WHERE (koszt BETWEEN 0.15 AND 0.24
+  AND  masa  BETWEEN 15   AND 24)
+  OR (koszt BETWEEN 0.25 AND 0.35
+  AND  masa  BETWEEN 25   AND 35);
