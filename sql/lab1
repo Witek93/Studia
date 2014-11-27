@@ -1,0 +1,10 @@
+-- zadanie 1.2.1
+select * from czekoladki
+where czekolada = 'mleczna'
+  and orzechy   = 'laskowe';
+
+select * from czekoladki
+where czekolada in ('gorzka', 'mleczna');
+
+select * from czekoladki
+where masa > 25;

@@ -1,51 +1,43 @@
-% 2.1.1
+-- zadanie 2.1
 SELECT nazwa, ulica, miejscowosc FROM klienci
-ORDER BY nazwa DESC;
+ORDER BY nazwa ASC;
 
-% 2.1.2
-SELECT nazwa FROM klienci
-ORDER BY miejscowosci ASC, klienci DESC;
+SELECT nazwa, ulica, miejscowosc FROM klienci
+ORDER BY miejscowosc ASC, nazwa ASC;
 
-% 2.1.3
-// WHERE miejscowosc IN ('Warszawa', 'Kraków')
-SELECT nazwa FROM klienci
-WHERE miejscowosc = 'Warszawa' OR miejscowosc = 'Kraków'
-ORDER BY miejscowosc DESC, klienci ASC;
+SELECT nazwa, ulica, miejscowosc FROM klienci
+WHERE miejscowosc IN ('Warszawa', 'Kraków')
+ORDER BY miejscowosc DESC, nazwa ASC;
 
-% 2.1.4
-SELECT nazwa FROM klienci
+SELECT * FROM klienci
 ORDER BY miejscowosc DESC;
 
-% 2.1.5
-SELECT nazwa FROM klienci
+SELECT * FROM klienci
 WHERE miejscowosc = 'Kraków'
-ORDER BY klienci ASC;
+ORDER BY nazwa ASC;
 
 
-% 2.2.1
+-- ended here
+
+% 2.2
 SELECT nazwa, masa FROM czekoladki
 WHERE masa > 20;
 
-% 2.2.2
 SELECT nazwa, masa, koszt FROM czekoladki
 WHERE masa > 20 AND koszt < 0.25;
 
-% 2.2.3
 SELECT nazwa, masa, CAST(koszt*100 AS INTEGER) FROM czekoladki
 WHERE masa > 20 AND koszt < 0.25;
 
-% 2.2.4
 SELECT nazwa, czekolada, nadzienie, orzechy FROM czekoladki
 WHERE czekolada     = 'mleczna'
   AND nadzienie     = 'truskawkowe'
   OR  orzechy       = 'laskowe'
   AND NOT czekolada = 'gorzka';
 
-% 2.2.5
 SELECT nazwa, koszt FROM czekoladki
 WHERE koszt > 0.25;
 
-% 2.2.6
 SELECT nazwa, czekolada FROM czekoladki
 WHERE czekolada = 'biała'
   OR  czekolada = 'mleczna';
