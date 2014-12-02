@@ -1,0 +1,28 @@
+SELECT nazwa, CAST(koszt*100 AS INTEGER) AS "koszt(gr)", czekolada FROM czekoladki
+WHERE koszt NOT BETWEEN 0.25 AND 0.35
+  AND (NOT czekolada IN ('mleczna', 'gorzka') OR orzechy IS NOT NULL)
+ORDER BY nazwa ASC, koszt DESC;
+
+SELECT * FROM zamowienia WHERE data BETWEEN '2013-01-01' AND '2013-01-31';
+
+--pola w EXTRACT: day(1-31),doy(1-366),dow(0-6),hour(0-23),minute,second(0-59),year
+SELECT * FROM zamowienia WHERE EXTRACT(month FROM data) IN (1,2);
+
+
+-- LIKE
+-- 's%s' (zaczyna i kończy s)
+-- '%s%' (zawiera s)
+
+-- [NOT] SIMILAR TO
+-- '[a-c]%' (zaczyna na a, b lub c)
+-- '%[A|a]la%' (zawiera 'Ala' lub 'ala')
+-- '%(qwe|asd)+%' (zawiera 'qwe' lub 'asd')
+-- '^[D-KST]%' (nie rozpoczyna się D-K, S lub T)
+
+-- INTERSECT,UNION,EXCEPT
+
+-- array_length(tab, 1) = 5
+-- NOW() - INTERVAL '5 years' > data;
+
+COPY (SELECT * FROM czekoladki WHERE masa=25) TO '/path' WITH DELIMITER ';' CSV HEADER;
+COPY zip_codes FROM '/path' DELIMITER ',' CSV;

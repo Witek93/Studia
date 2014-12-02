@@ -1,42 +1,39 @@
-% 4.2.1
-SELECT dataRealizacji, idZamowienia
-FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+-- zadanie 4.2
+SELECT k.nazwa, z.dataRealizacji, z.idZamowienia FROM klienci k NATURAL JOIN zamowienia z
 WHERE k.nazwa LIKE '%Antoni%';
 
-% 4.2.2
-SELECT dataRealizacji, idZamowienia
-FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+SELECT k.nazwa, z.dataRealizacji, z.idZamowienia, k.ulica FROM klienci k NATURAL JOIN zamowienia z
 WHERE k.ulica LIKE '%/%';
 
-% 4.2.3
-SELECT dataRealizacji, idZamowienia
-FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+SELECT k.nazwa, z.dataRealizacji, k.miejscowosc FROM klienci k NATURAL JOIN zamowienia z
 WHERE k.miejscowosc = 'Kraków'
   AND EXTRACT(year  FROM z.dataRealizacji) = 2013
   AND EXTRACT(month FROM z.dataRealizacji) = 11;
 
 
-% 4.3.1
-SELECT k.nazwa, k.ulica, k.miejscowosc, z.dataRealizacji
-FROM klienci k JOIN zamowienia z ON k.idKlienta = z.idKlienta
+-- zadanie 4.3
+SELECT k.nazwa, k.ulica, k.miejscowosc, z.dataRealizacji FROM klienci k
+  NATURAL JOIN zamowienia z
 WHERE NOW() - INTERVAL '5 years' > z.dataRealizacji;
 
-% 4.3.2
-SELECT k.nazwa, k.ulica, k.miejscowosc, p.nazwa FROM klienci k
-JOIN zamowienia z ON k.idKlienta = z.idKlienta
-JOIN artykuly   a ON a.idZamowienia = z.idZamowienia
-JOIN pudelka    p ON p.idPudelka = a.idPudelka
-WHERE p.nazwa IN ('Kremowa fantazja', 'Kolekcja jesienna');
+SELECT k.nazwa, z.idzamowienia, p.nazwa FROM klienci k
+  NATURAL JOIN zamowienia z
+  NATURAL JOIN artykuly a
+  JOIN pudelka p USING(idPudelka)
+  WHERE p.nazwa IN ('Kremowa fantazja', 'Kolekcja jesienna');
 
-% 4.3.3
-SELECT k.nazwa, k.ulica, k.miejscowosc FROM klienci k
-INNER JOIN zamowienia z ON k.idKlienta = z.idKlienta;
+SELECT k.nazwa, count(z.idzamowienia) AS iloscZamowien FROM klienci k
+  NATURAL JOIN zamowienia z
+  NATURAL JOIN artykuly a
+  JOIN pudelka p USING(idPudelka)
+GROUP BY k.nazwa;
 
-% 4.3.4
-SELECT nazwa, ulica, miejscowosc FROM klienci
-EXCEPT
-SELECT k.nazwa, k.ulica, k.miejscowosc FROM klienci k
-INNER JOIN zamowienia z ON k.idKlienta = z.idKlienta;
+SELECT k.nazwa, z.idzamowienia FROM klienci k
+  NATURAL JOIN zamowienia z
+  NATURAL JOIN artykuly a
+  JOIN pudelka p USING(idPudelka)
+  ORDER BY z.idzamowienia;
+
 
 % 4.3.5
 SELECT k.nazwa, k.ulica, k.miejscowosc, z.dataRealizacji FROM klienci k

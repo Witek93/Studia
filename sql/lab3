@@ -1,114 +1,112 @@
-3.1.1
+-- zadanie 3.1
 SELECT idZamowienia, dataRealizacji FROM zamowienia
 WHERE dataRealizacji BETWEEN '2013-11-12' AND '2013-11-20';
-3.1.2
+
 SELECT idZamowienia, dataRealizacji FROM zamowienia
 WHERE dataRealizacji BETWEEN '2013-12-15' AND '2013-12-20'
    OR dataRealizacji BETWEEN '2013-12-01' AND '2013-12-06';
-3.1.3
+
 SELECT idZamowienia, dataRealizacji FROM zamowienia
 WHERE EXTRACT(month FROM dataRealizacji) = 11;
-3.1.4
+
 SELECT idZamowienia, dataRealizacji FROM zamowienia
 WHERE EXTRACT(month FROM dataRealizacji) IN (11,12);
-3.1.5
+
 SELECT idZamowienia, dataRealizacji FROM zamowienia
 WHERE EXTRACT(day FROM dataRealizacji) BETWEEN 17 AND 19
 ORDER BY dataRealizacji;
-3.1.6
+
 SELECT idZamowienia, dataRealizacji FROM zamowienia
 WHERE EXTRACT(week FROM dataRealizacji) IN (46,47);
 
 
-
-3.2.1
+-- zadanie 3.2
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa LIKE 'S%';
-3.2.2
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa LIKE 'S%i';
-3.2.3
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa LIKE 'S% m%';
-3.2.4
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa SIMILAR TO '[A-C]%';
-3.2.5
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa SIMILAR TO '%[o|O]rzech%';
-3.2.6
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa LIKE 'S%m%';
-3.2.7
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa SIMILAR TO '%(maliny|truskawki)+%';
-3.2.8
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
-WHERE nazwa SIMILAR TO '[^D-KST]%';
-3.2.9
+WHERE nazwa SIMILAR TO '^[D-KST]%';
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa LIKE 'Słod%';
-3.2.10
+
 SELECT idCzekoladki, nazwa, czekolada, orzechy, nadzienie FROM czekoladki
 WHERE nazwa NOT LIKE '% %';
 
 
-3.3.1
-SELECT * FROM klienci
-WHERE miejscowosc LIKE '% %';
-3.3.2
-SELECT * FROM klienci
-WHERE LENGTH(telefon) = 13;
-3.3.3
-SELECT * FROM klienci
-WHERE telefon IS NOT NULL;
+-- zadanie 3.3
+SELECT * FROM klienci WHERE miejscowosc LIKE '% %';
+
+SELECT * FROM klienci WHERE LENGTH(telefon) = 13;
+
+SELECT * FROM klienci WHERE telefon IS NOT NULL;
 
 
-3.4.1
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE masa BETWEEN 15 AND 24
+-- zadanie 3.4
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE masa BETWEEN 15 AND 24
 INTERSECT
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE koszt BETWEEN 0.25 AND 0.35;
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE koszt BETWEEN 0.25 AND 0.35;
 
-3.4.2
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE masa BETWEEN 25 AND 35
+
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE masa BETWEEN 25 AND 35
 EXCEPT
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE koszt BETWEEN 0.25 AND 0.35;
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE koszt BETWEEN 0.25 AND 0.35;
 
-3.4.3
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE masa BETWEEN 15 AND 24
+
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE masa BETWEEN 15 AND 24
 INTERSECT
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE koszt BETWEEN 0.25 AND 0.35
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE koszt BETWEEN 0.25 AND 0.35
 UNION
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE masa BETWEEN 25 AND 35;
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE masa BETWEEN 25 AND 35;
 
-3.4.4
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE masa BETWEEN 15 AND 24
+
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE masa BETWEEN 15 AND 24
 INTERSECT
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE koszt BETWEEN 0.15 AND 0.24;
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE koszt BETWEEN 0.15 AND 0.24;
 
-3.4.5
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE masa BETWEEN 25 AND 35
+
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE masa BETWEEN 25 AND 35
 EXCEPT
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE koszt BETWEEN 0.15 AND 0.24
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE koszt BETWEEN 0.15 AND 0.24
 EXCEPT
-SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki
-WHERE koszt BETWEEN 0.29 AND 0.35;
+SELECT idCzekoladki, nazwa, masa, koszt FROM czekoladki WHERE koszt BETWEEN 0.29 AND 0.35;
 
 
 
-3.5.1
-SELECT idKlienta FROM zamowienia
+-- zadanie 3.5
+SELECT k.idKlienta FROM klienci k
 INTERSECT
-SELECT idKlienta FROM zamowienia
-WHERE idZamowienia IS NULL;
+SELECT z.idKlienta FROM zamowienia z WHERE z.idZamowienia IS NULL;
+
+
+SELECT k.nazwa FROM klienci k WHERE k.nazwa SIMILAR TO '%(rz|Rz)+%'
+UNION
+SELECT c.nazwa FROM czekoladki c WHERE c.nazwa SIMILAR TO '%(rz|Rz)+%'
+UNION
+SELECT p.nazwa FROM pudelka p WHERE p.nazwa SIMILAR TO '%(rz|Rz)+%';
+
+
+-- zadanie 3.6
+SELECT m.idmeczu, s.gospodarze, s.goscie FROM siatkowka.mecze m JOIN siatkowka.statystyki s USING (idmeczu);
+
+SELECT m.idmeczu, s.gospodarze, s.goscie FROM siatkowka.mecze m JOIN siatkowka.statystyki s USING (idmeczu)
+WHERE array_length(s.gospodarze, 1) = 5
+  AND (s.gospodarze[5] > 15 OR s.goscie[5] > 15);
