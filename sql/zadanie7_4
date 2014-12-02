@@ -1,0 +1,10 @@
+MetodaPlatnosci:     {_metodaPlNr_}
+Klient:              {_klientNr_}
+--wykreslony w trakcie analizowania Faktury
+--Faktura:             {metodaPlNr, _fakturaNr_}
+Zamowienie:          {klientNr, metodaPlNr, fakturaNr, _zamowienieNr_, pracownikNr}
+Pracownik:           {_pracownikNr_}
+Artykul:             {_artykulNr_}
+Transport:           {pracownikNr, _transportNr_, sposobTrNr, zamowieniaNr, artykulNr, sposobTrNr}
+SposobTransportu:    {_sposobTrNr_}
+SzczegolyZamowienia: {_zamowienieNr_, _artykulNr_}
