@@ -1,0 +1,60 @@
+-- zadanie 8.1
+
+-- obliczamy domkniecia zbiorow
+A+ = {A}
+B+ = {B}
+C+ = {C,D}
+D+ = {D}
+E+ = {E,B}
+
+{A,B}+ = {A,B,C,D,E} - klucz
+{A,C}+ = {A,B,C,D,E} - klucz
+{A,D}+ = {A,B,C,D,E} - klucz
+{A,E}+ = {A,B,C,D,E} - klucz
+{B,C}+ = {B,C,D}
+{B,D}+ = {B,D}
+{B,E}+ = {B,E}
+{C,D}+ = {C,D}
+{C,E}+ = {C,E,B}
+{D,E}+ = {D,E,B}
+
+
+-- zaleznosci nietrywialne
+{C,E} -> {C,B}
+{C,E} -> {B}
+{A,D} -> {B,C}
+{C}   -> {C,D}
+{D,E} -> {D,E,B}
+
+
+
+-- zadanie 8.2
+
+--Przyklad 1
+C -> {A,B}
+E -> {A,D}
+C -> D
+E -> B
+--nie da sie nic zredukowac, to juz jest minimalny zbior zaleznosci
+
+--Przyklad 2
+A -> B
+A -> C
+{A,B} -> D
+{A,C} -> {B,D}
+--redukujemy {A,B} -> D do A -> D, bo z zaleznosci A -> B mozemy otrzymac B za pomoca A
+--usuwamy takze zaleznosc {A,C} -> {B,D}, gdyz C uzyskujemy z zaleznosci A -> C
+--zbior {B,D} tez jest osiagalny dzieki A -> B oraz zredukowanego wczesniej A -> D
+A -> B
+A -> C
+A -> D
+
+
+
+-- zadanie 8.3
+1) Nie (gdyz {A,B} -> C)
+2) Nie
+3) Tak
+4) Tak
+5) Nie
+6) Tak (gdyz E -> B oraz C -> D)
