@@ -1,0 +1,12 @@
+SERVER:
+  View:
+    showBoard();
+    showAd(id);
+  Model:
+    getBoard();
+    getAd(id);
+    appendAd(ad);
+    findAd(id);
+
+
+CLIENT:
