@@ -3,6 +3,7 @@ SERVER:
     showBoard();
     showAd(id);
   Model:
+    long ID --autoIncrement
     getBoard();
     getAd(id);
     appendAd(ad);
@@ -10,3 +11,7 @@ SERVER:
 
 
 CLIENT:
+  View:
+    showBoard();
+    showAd(id);
+  Model:
