@@ -1,19 +1,49 @@
 % 10.2.1
-SELECT DISTINCT dataRealizacji, idZamowienia, nazwa
-  FROM zamowienia NATURAL JOIN klienci
+SELECT DISTINCT dataRealizacji, idZamowienia, nazwa FROM zamowienia
+NATURAL JOIN klienci
   WHERE idKlienta IN (SELECT idKlienta FROM klienci WHERE nazwa LIKE '%Antoni%');
 
 % 10.2.2
-SELECT DISTINCT dataRealizacji, idZamowienia, ulica
-FROM zamowienia NATURAL JOIN klienci
-WHERE idKlienta IN (SELECT idKlienta FROM klienci WHERE ulica LIKE '%/%')
+SELECT DISTINCT dataRealizacji, idZamowienia, ulica FROM zamowienia
+NATURAL JOIN klienci
+  WHERE idKlienta IN (SELECT idKlienta FROM klienci WHERE ulica LIKE '%/%')
 ORDER BY idZamowienia;
 
 % 10.2.3
-SELECT DISTINCT dataRealizacji, idZamowienia, miejscowosc
-FROM zamowienia NATURAL JOIN klienci
-WHERE
-  idKlienta IN (SELECT idKlienta FROM klienci WHERE miejscowosc LIKE '%Krak%')
-  AND EXTRACT(month FROM dataRealizacji) = 11
-  AND EXTRACT(year  FROM dataRealizacji) = 2013
+SELECT DISTINCT dataRealizacji, idZamowienia, miejscowosc FROM zamowienia
+NATURAL JOIN klienci
+  WHERE
+    idKlienta IN (SELECT idKlienta FROM klienci WHERE miejscowosc LIKE '%Krak%')
+    AND EXTRACT(month FROM dataRealizacji) = 11
+    AND EXTRACT(year  FROM dataRealizacji) = 2013
 ORDER BY idZamowienia;
+
+
+% 10.3.1
+SELECT DISTINCT nazwa, ulica, miejscowosc, dataRealizacji FROM klienci
+NATURAL JOIN zamowienia
+  WHERE dataRealizacji IN ('2013-11-12');
+
+% 10.3.2
+SELECT DISTINCT nazwa, ulica, miejscowosc, dataRealizacji FROM klienci
+NATURAL JOIN zamowienia
+  WHERE EXTRACT(month FROM dataRealizacji) = 11
+  AND   EXTRACT(year  FROM dataRealizacji) = 2013;
+
+% 10.3.3
+SELECT DISTINCT k.nazwa, ulica, miejscowosc, p.nazwa FROM klienci k
+NATURAL JOIN zamowienia
+NATURAL JOIN artykuly
+JOIN pudelka p USING(idPudelka)
+WHERE
+  idPudelka IN (SELECT idPudelka FROM pudelka WHERE nazwa IN ('Kremowa fantazja', 'Kolekcja jesienna'));
+
+
+% 10.3.4
+SELECT DISTINCT k.nazwa, ulica, miejscowosc, p.nazwa, z.sztuk FROM klienci k
+NATURAL JOIN zamowienia
+NATURAL JOIN zawartosc z
+JOIN pudelka p USING(idPudelka)
+WHERE
+  idPudelka IN (SELECT idPudelka FROM pudelka WHERE nazwa IN ('Kremowa fantazja', 'Kolekcja jesienna'))
+  AND idZamowienia IN (SELECT idZamowienia FROM zawartosc WHERE sztuk >= 2);
