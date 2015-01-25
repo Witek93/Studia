@@ -1,0 +1,17 @@
+SERVER:
+  View:
+    showBoard();
+    showAd(id);
+  Model:
+    long ID --autoIncrement
+    getBoard();
+    getAd(id);
+    appendAd(ad);
+    findAd(id);
+
+
+CLIENT:
+  View:
+    showBoard();
+    showAd(id);
+  Model:
