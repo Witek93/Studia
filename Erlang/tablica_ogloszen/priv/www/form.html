@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<title>
+Formularz</title>
+</head>
+<body>
+<div id="top">
+<nav id="menu">
+<header>
+<h1>
+Menu strony</h1>
+</header>
+<ul>
+<li>
+<a href="/create">Nowe ogłoszenie</a>
+</li>
+</ul>
+<header>
+<h1>
+Ogłoszenia</h1>
+</header>
+<ul>
+<li>
+<a href="2">Sprzedam nerke</a>
+</li>
+<li>
+<a href="4">Sprzedam nerke</a>
+</li>
+<li>
+<a href="1">Sprzedam nerke</a>
+</li>
+<li>
+<a href="3">Sprzedam nerke</a>
+</li>
+</ul>
+</nav>
+<form action="" method="post">
+<header>
+<h1>
+Tablica ogłoszen
+</h1>
+</header>
+<fieldset>
+<legend>
+Dodanie ogloszenia</legend>
+<p>
+Imie: <input type="text" name="firstName" required/>
+</p>
+<p>
+Nazwisko: <input type="text" name="lastName" required/>
+</p>
+<p>
+Telefon: <input type="tel" name="phoneNumber" pattern="^([0-9]{3} [0-9]{3} [0-9]{3})|([0-9]{9})$" />
+</p>
+<p>
+Email: <input type="email" name="email" required/>
+</p>
+<p>
+Tytuł ogłoszenia: <input type="text" name="title" required/>
+</p>
+<p>
+Tekst ogloszenia:<br/> <textarea name="advertisement" required></textarea>
+</p>
+<p>
+<button type="submit">Dodaj</button>
+<button type="reset">Resetuj</button>
+</p>
+</fieldset>
+</form>
+</div>
+</body>
+</html>

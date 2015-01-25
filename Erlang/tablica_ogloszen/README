@@ -1,0 +1,15 @@
+Funkcje:
+
+server_post:start(8081).
+server_post:stop().
+
+database:start().
+
+mnesia:clear_table(ogloszenia).
+mnesia:table_info(ogloszenia, size).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Powłoka unixowa:
+
+erlc *.erl
