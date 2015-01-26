@@ -62,13 +62,13 @@ buildBody(Content) ->
 buildNavigation() ->
     Nav = [html_builder:build([header, h1], "Menu strony"),
            html_builder:build(ul, navigationBasicLinks()),
-           html_builder:build([header, h1], "Ogłoszenia"),
+           html_builder:build([header, h1], "Ogloszenia"),
            html_builder:build(ul, navigationAdsLinks())
           ],
     html_builder:build(nav, "menu", html_builder:parseMany(Nav)).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 navigationBasicLinks() ->
-    Link = html_builder:build(link, "/create", "Nowe ogłoszenie"),
+    Link = html_builder:build(link, "/create", "Nowe ogloszenie"),
     html_builder:build(li, Link).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 navigationAdsLinks() ->
@@ -97,18 +97,20 @@ formArticle() ->
                  "^([0-9]{3} [0-9]{3} [0-9]{3})|([0-9]{9})$")),
             html_builder:build(p, "Email: " ++
                 html_builder:build(input, "email", "email", required)),
-            html_builder:build(p, "Tytuł ogłoszenia: " ++
+            html_builder:build(p, "Tytul ogloszenia: " ++
                 html_builder:build(input, "text", "title", required)),
-            html_builder:build(p, "Tekst ogloszenia:<br/> " ++
+            html_builder:build(p, "Tekst ogloszenia:<br> " ++
                      html_builder:build(textarea, "advertisement", required)),
             html_builder:build(p,
                 html_builder:build(button, "submit", "Dodaj") ++
                 html_builder:build(button, "reset", "Resetuj"))],
 
-    Article = [html_builder:build([header, h1], "Tablica ogłoszen\r\n"),
+    Article = [html_builder:build([header, h1], "Tablica ogloszen\r\n"),
                html_builder:build(fieldset, html_builder:parseMany(Form))],
 
-    html_builder:buildForm("post", Article).
+    PostForm = html_builder:build(article, "tresc", html_builder:parseMany(Article)),
+
+    html_builder:buildForm("post", PostForm).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% budowanie formularza %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

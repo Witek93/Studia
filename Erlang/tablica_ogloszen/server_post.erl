@@ -6,6 +6,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% obsługa serwera tcp/ip %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 start(Port)->
+    database:start(),
     % chcemy otrzymać informację, gdy uśmiercamy proces funkcją exit/2 w funkcji
     % stop/0 unikamy w ten sposób zablokowania procesu w powłoce 'erl'
     process_flag(trap_exit, true),

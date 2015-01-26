@@ -1,7 +1,7 @@
 -module(request_handler).
 -author(witek).
 
--export([handle/1]).
+-export([handle/1, makeBinary/1]).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% obsługa zapytania %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,7 +89,8 @@ get_body(Sock, Length) ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%% parsowanie odpowiedzi dla HTTP %%%%%%%%%%%%%%%%%%%%%%%%%
 parseResponse(Str) ->
-    Bin = iolist_to_binary(Str),
+    %Bin = makeBinary(Str),
+    Bin = erlang:iolist_to_binary(Str),
     iolist_to_binary(io_lib:fwrite(
         "HTTP/1.0 200 OK\nContent-Type: text/html\nContent-Length: ~p\n\n~s",
         [size(Bin), Bin])).
@@ -118,3 +119,18 @@ log(Type, What) ->
     error_logger:error_report(Report).
 %%%%%%%%%%%%%%%%%% obsługa błędów TCP - odpowiedzi oraz logi %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+makeBinary(Str) ->
+    makeBinary(Str, 1, 10).
+
+makeBinary(Str, Start, End) ->
+    SubStr = string:sub_string(Str, Start, End),
+
+    io:format("~p~n", [SubStr]),
+    Bin = iolist_to_binary(SubStr),
+    io:format("~p~n", [Bin]),
+    case string:len(Str) > End of
+        true -> makeBinary(Str, Start+10, End+10);
+        false -> ok
+    end.
