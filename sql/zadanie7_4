@@ -5,6 +5,6 @@ Klient:              {_klientNr_}
 Zamowienie:          {klientNr, metodaPlNr, fakturaNr, _zamowienieNr_, pracownikNr}
 Pracownik:           {_pracownikNr_}
 Artykul:             {_artykulNr_}
-Transport:           {pracownikNr, _transportNr_, sposobTrNr, zamowieniaNr, artykulNr, sposobTrNr}
+Transport:           {pracownikNr, _transportNr_, sposobTrNr, zamowieniaNr, artykulNr}
 SposobTransportu:    {_sposobTrNr_}
 SzczegolyZamowienia: {_zamowienieNr_, _artykulNr_}
